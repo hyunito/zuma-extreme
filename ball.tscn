@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ccy0lt5isqv36"]
+
+[ext_resource type="Script" uid="uid://brrfcchudpq7b" path="res://ball.gd" id="1_41u45"]
+[ext_resource type="Texture2D" uid="uid://d0wopmihtnqun" path="res://assets/balls/Red_ball.png" id="1_x8fbi"]
+
+[node name="Ball" type="PathFollow2D" unique_id=1668362513]
+script = ExtResource("1_41u45")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=123341007]
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("1_x8fbi")
+region_enabled = true
+region_rect = Rect2(7.400013, 43.500004, 128, 129.59999)

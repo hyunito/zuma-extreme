@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://4nfwanimq48n"]
+
+[ext_resource type="Texture2D" uid="uid://ckby707wcemly" path="res://assets/background/ZUMA BG.png" id="1_epypp"]
+[ext_resource type="Texture2D" uid="uid://cpgodg645ihos" path="res://assets/avatar/Player_avatar.png" id="2_0hol4"]
+[ext_resource type="Script" uid="uid://bb3kostg6vlx0" path="res://track.gd" id="3_0hol4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q6r6c"]
+load_path = "res://.godot/imported/AI_avatar.png-51dd422fb004782744941c614235f76a.ctex"
+
+[sub_resource type="Curve2D" id="Curve2D_kdubu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 651, -330, 0, 0, 0, 0, 651, -303, 0, 0, 0, 0, 649, -265, 0, 0, 0, 0, 648, -239, 0, 0, 0, 0, 642, -204, 0, 0, 0, 0, 629, -185, 0, 0, 0, 0, 602, -167, 0, 0, 0, 0, 566, -155, 0, 0, 0, 0, 532, -153, 0, 0, 0, 0, 502, -153, 0, 0, 0, 0, -261, -153, 0, 0, 0, 0, -306, -164, 0, 0, 0, 0, -339, -186, 0, 0, 0, 0, -383, -223, 0, 0, 0, 0, -436, -247, 0, 0, 0, 0, -485, -250, 0, 0, 0, 0, -535, -235, 0, 0, 0, 0, -579, -203, 0, 0, 0, 0, -597, -173, 0, 0, 0, 0, -606, -133, 0, 0, 0, 0, -603, -65, 0, 0, 0, 0, -593, -35, 0, 0, 0, 0, -563, 3, 0, 0, 0, 0, -527, 27, 0, 0, 0, 0, -482, 43, 0, 0, 0, 0, -451, 45, 0, 0, 0, 0, -377, 68, 0, 0, 0, 0, -195, 140, 0, 0, 0, 0, -102, 164, 0, 0, 0, 0, -53, 171, 0, 0, 0, 0, 112, 167, 0, 0, 0, 0, 194, 149, 0, 0, 0, 0, 234, 132, 0, 0, 0, 0, 261, 114, 0, 0, 0, 0, 287, 90, 0, 0, 0, 0, 318, 63, 0, 0, 0, 0, 354, 38, 0, 0, 0, 0, 393, 21, 0, 0, 0, 0, 434, 6, 0, 0, 0, 0, 478, -3, 0, 0, 0, 0, 518, 1, 0, 0, 0, 0, 541, 5, 0, 0, 0, 0, 568, 16, 0, 0, 0, 0, 590, 29, 0, 0, 0, 0, 615, 55, 0, 0, 0, 0, 630, 81, 0, 0, 0, 0, 644, 109, 0, 0, 0, 0, 650, 148, 0, 0, 0, 0, 643, 185, 0, 0, 0, 0, 627, 231, 0, 0, 0, 0, 605, 252, 0, 0, 0, 0, 585, 271, 0, 0, 0, 0, 552, 286, 0, 0, 0, 0, 523, 296, 0, 0, 0, 0, 484, 306, 0, 0, 0, 0, -503, 306)
+}
+point_count = 56
+
+[sub_resource type="Gradient" id="Gradient_kdubu"]
+offsets = PackedFloat32Array(0, 0.7380319)
+
+[node name="Main" type="Node2D" unique_id=1845644771]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1698763331]
+position = Vector2(9, -2)
+texture = ExtResource("1_epypp")
+
+[node name="Grass" type="Sprite2D" parent="." unique_id=715228268]
+
+[node name="Player" type="Sprite2D" parent="." unique_id=1619769484]
+position = Vector2(-467, -117)
+scale = Vector2(0.6220837, 0.5958116)
+texture = ExtResource("2_0hol4")
+
+[node name="AIAvatar" type="Sprite2D" parent="." unique_id=1882145874]
+position = Vector2(473.99997, 137)
+scale = Vector2(0.58360195, 0.58660775)
+texture = SubResource("CompressedTexture2D_q6r6c")
+
+[node name="Track" type="Path2D" parent="." unique_id=970288615]
+curve = SubResource("Curve2D_kdubu")
+script = ExtResource("3_0hol4")
+
+[node name="Line2D" type="Line2D" parent="Track" unique_id=1636038644]
+width = 40.0
+gradient = SubResource("Gradient_kdubu")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1639557962]
+position = Vector2(1, -2)
+zoom = Vector2(0.67, 0.67)
