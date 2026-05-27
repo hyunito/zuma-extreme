@@ -29,7 +29,7 @@ gradient = SubResource("Gradient_kdubu")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1639557962]
 position = Vector2(1, -2)
-zoom = Vector2(0.67, 0.67)
+zoom = Vector2(0.6, 0.613)
 
 [node name="Player" parent="." unique_id=48903084 instance=ExtResource("3_lquwl")]
 position = Vector2(1, 301)

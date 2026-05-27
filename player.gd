@@ -1,16 +1,34 @@
 extends Node2D
 
+var bullet_scene = preload("res://shot_ball.tscn")
+@onready var mouth_position = $Marker2D
+@onready var loaded_ball_sprite = $LoadedBall
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var possible_textures = [
+	preload("res://assets/balls/Red_ball.png"),
+	preload("res://assets/balls/Blue_ball.png"),
+	preload("res://assets/balls/Yellow_ball.png")
+]
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# This gets the exact position of your mouse in the game world
-	var mouse_pos = get_global_mouse_position()
-	# Tell the player to rotate and face that exact position!
-	look_at(mouse_pos)
-	# This uses a sine wave to make the scale bounce smoothly between 0.95 and 1.05!
-	#scale = Vector2(1.0, 1.0) + Vector2(0.05, 0.05) * sin(Time.get_ticks_msec() * 0.005)
+	look_at(get_global_mouse_position())
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		shoot()
+
+func shoot():
+	# 1. Create the bullet
+	var new_bullet = bullet_scene.instantiate()
+	
+	# 2. MATCH THE COLORS! We force the bullet to use the exact same image as our Dummy ball.
+	# (We use get_node to find the Sprite2D inside the newly spawned bullet)
+	new_bullet.get_node("Sprite2D").texture = loaded_ball_sprite.texture
+	
+	# 3. Position and fire!
+	new_bullet.global_position = mouth_position.global_position
+	new_bullet.rotation = rotation
+	get_tree().current_scene.add_child(new_bullet)
+	
+	# 4. Reload the mouth with a brand new random color for the next shot!
+	loaded_ball_sprite.texture = possible_textures.pick_random()
