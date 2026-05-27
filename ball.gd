@@ -16,8 +16,10 @@ func _physics_process(delta: float) -> void:
 	progress += speed * delta
 	
 	if sprite:
-		sprite.rotation = progress / 20.0
-
+	# Define how many pixels the ball needs to move to advance 1 frame of rotation
+		var distance_per_frame: float = 15.0 
+	
+		sprite.frame = int(progress / distance_per_frame) % 10
 	if progress_ratio >= 1.0:
 		reach_end()
 

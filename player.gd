@@ -10,7 +10,7 @@ var possible_textures = [
 	preload("res://assets/balls/Yellow_ball.png")
 ]
 
-func _process(delta):
+func _process(_delta):
 	look_at(get_global_mouse_position())
 
 func _unhandled_input(event):
@@ -28,7 +28,9 @@ func shoot():
 	# 3. Position and fire!
 	new_bullet.global_position = mouth_position.global_position
 	new_bullet.rotation = rotation
-	get_tree().current_scene.add_child(new_bullet)
+	# ADD THIS LINE: Copy the player's active scale to the bullet!
+	new_bullet.scale = global_scale
+	get_parent().add_child(new_bullet)
 	
 	# 4. Reload the mouth with a brand new random color for the next shot!
 	loaded_ball_sprite.texture = possible_textures.pick_random()

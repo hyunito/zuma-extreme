@@ -32,6 +32,6 @@ position = Vector2(1, -2)
 zoom = Vector2(0.6, 0.613)
 
 [node name="Player" parent="." unique_id=48903084 instance=ExtResource("3_lquwl")]
-position = Vector2(1, 301)
+position = Vector2(-3.9999995, 323.00003)
 rotation = -1.5529062
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.7, 0.7)

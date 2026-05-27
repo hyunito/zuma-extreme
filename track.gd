@@ -23,7 +23,7 @@ func spawn_ball() -> void:
 	var new_ball = BALL_SCENE.instantiate()
 	
 	add_child(new_ball)
-	new_ball.progress = 0.0
+#	new_ball.progress = 0.0
 	
 	var random_color = COLORS[randi() % COLORS.size()]
 	new_ball.set_color(random_color)

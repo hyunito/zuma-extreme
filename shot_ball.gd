@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
-var speed = 1000.0 
-func _physics_process(delta):
+var speed: float = 2000.0
+var animation_timer: float = 0.0
+var frame_rate: float = 0.05 # lower = faster roll
+
+func _physics_process(delta: float) -> void:
 	var motion = transform.x * speed * delta
 	var collision = move_and_collide(motion)
 	
@@ -9,6 +12,8 @@ func _physics_process(delta):
 		var bounce_direction = motion.bounce(collision.get_normal())
 		rotation = bounce_direction.angle()
 		
-	# NEW LINE: This spins the image like a wheel every frame!
-	# You can change the "15.0" to make it spin faster or slower.
-	$Sprite2D.rotation += 15.0 * delta
+	# Animate the rolling frame every frame
+	animation_timer += delta
+	if animation_timer >= frame_rate:
+		animation_timer = 0.0
+		$Sprite2D.frame = ($Sprite2D.frame + 1) % 10
