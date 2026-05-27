@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://4nfwanimq48n"]
+
+[ext_resource type="Texture2D" uid="uid://bgklvj77mbkfb" path="res://assets/background/Stage 1_Piko.png" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://bb3kostg6vlx0" path="res://track.gd" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cmgwae5f4m38w" path="res://player.tscn" id="3_lquwl"]
+
+[sub_resource type="Curve2D" id="Curve2D_kdubu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -53, 171)
+}
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_kdubu"]
+offsets = PackedFloat32Array(0, 0.7380319)
+
+[node name="Level 1 Stage_Piko" type="Node2D" unique_id=1845644771]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1698763331]
+position = Vector2(2, -9)
+texture = ExtResource("1_h2yge")
+
+[node name="Track" type="Path2D" parent="." unique_id=970288615]
+curve = SubResource("Curve2D_kdubu")
+script = ExtResource("2_1bvp3")
+
+[node name="Line2D" type="Line2D" parent="Track" unique_id=1636038644]
+width = 40.0
+gradient = SubResource("Gradient_kdubu")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1639557962]
+position = Vector2(1, -2)
+zoom = Vector2(0.67, 0.67)
+
+[node name="Player" parent="." unique_id=48903084 instance=ExtResource("3_lquwl")]
+position = Vector2(1, 301)
+rotation = -1.5529062
+scale = Vector2(0.8, 0.8)
