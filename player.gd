@@ -26,24 +26,18 @@ func _unhandled_input(event):
 		shoot()
 
 func shoot():
-	# 1. Create the bullet
 	var new_bullet = bullet_scene.instantiate()
 	
-	# 2. Assign the color string AND texture to the bullet!
 	new_bullet.ball_color = current_color
 	new_bullet.get_node("Sprite2D").texture = BALL_TEXTURES[current_color]
 	
-	# 3. Position and fire!
 	new_bullet.global_position = mouth_position.global_position
 	new_bullet.rotation = rotation
 	new_bullet.scale = global_scale
 	get_parent().add_child(new_bullet)
 	
-	# 4. Reload the mouth
 	reload()
 
 func reload() -> void:
-	# Pick a random color string from our dictionary keys
 	current_color = BALL_TEXTURES.keys().pick_random()
-	# Apply the corresponding texture
 	loaded_ball_sprite.texture = BALL_TEXTURES[current_color]

@@ -16,13 +16,12 @@ func _physics_process(delta: float) -> void:
 			
 			var hit_ball = collider.get_parent()
 			
-			# Find the Track (which is the parent of the ball we hit)
 			var track = hit_ball.get_parent()
 			
-			# Find the exact math coordinate on the track closest to where we crashed
+			
 			var hit_progress = track.curve.get_closest_offset(global_position)
-			# Tell the track to run our new insertion function!
-			track.insert_ball(hit_ball, hit_progress, $Sprite2D.texture)
+		
+			track.insert_ball(hit_ball, hit_progress, ball_color, $Sprite2D.texture)
 		
 			queue_free()
 		else:

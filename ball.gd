@@ -16,7 +16,7 @@ var push_back_remaining: float = 0.0
 
 func _physics_process(delta: float) -> void:
 	if sprite:
-		var distance_per_frame: float = 10 
+		var distance_per_frame: float = 5.5
 		sprite.frame = int(progress / distance_per_frame) % 10
 		sprite.flip_v = should_flip
 
