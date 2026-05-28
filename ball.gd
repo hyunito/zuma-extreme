@@ -12,17 +12,15 @@ var ball_color: String = "red"
 
 @onready var sprite: Sprite2D = $Sprite2D
 var should_flip: bool = true
-func _physics_process(delta: float) -> void:
-	progress += speed * delta
-	
-	if sprite:
+var push_back_remaining: float = 0.0
 
+func _physics_process(delta: float) -> void:
+	if sprite:
 		var distance_per_frame: float = 10 
-	
 		sprite.frame = int(progress / distance_per_frame) % 10
 		sprite.flip_v = should_flip
-	if progress_ratio >= 1.0:
-		reach_end()
+
+
 
 func set_color(new_color: String) -> void:
 	ball_color = new_color
@@ -35,3 +33,8 @@ func set_color(new_color: String) -> void:
 
 func reach_end() -> void:
 	queue_free()
+	
+func set_texture(tex: Texture2D) -> void:
+	if not is_node_ready():
+		await ready
+	sprite.texture = tex
