@@ -11,15 +11,16 @@ const BALL_TEXTURES = {
 var ball_color: String = "red"
 
 @onready var sprite: Sprite2D = $Sprite2D
-
+var should_flip: bool = true
 func _physics_process(delta: float) -> void:
 	progress += speed * delta
 	
 	if sprite:
-	# Define how many pixels the ball needs to move to advance 1 frame of rotation
-		var distance_per_frame: float = 15.0 
+
+		var distance_per_frame: float = 10 
 	
 		sprite.frame = int(progress / distance_per_frame) % 10
+		sprite.flip_v = should_flip
 	if progress_ratio >= 1.0:
 		reach_end()
 
