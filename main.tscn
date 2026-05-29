@@ -2,17 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bgklvj77mbkfb" path="res://assets/background/Stage 1_Piko.png" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://bb3kostg6vlx0" path="res://track.gd" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://d383j0otedd7j" path="res://track.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cmgwae5f4m38w" path="res://player.tscn" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://2rm0dtrghjim" path="res://assets/background/piko 2-export.png" id="4_1bvp3"]
-
-[sub_resource type="Curve2D" id="Curve2D_kdubu"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 729.0909, -38.181816, 0, 0, 0, 0, 724.5454, -153.63635, 0, 0, 0, 0, 424.54544, -154.54546, 0, 0, 0, 0, 420.9091, -295.45453, 0, 0, 0, 0, 122.72727, -295.45453, 0, 0, 0, 0, 119.99999, -155.45454, 0, 0, 0, 0, -147.27272, -154.54546, 0, 0, 0, 0, -148.18181, -297.2727, 0, 0, 0, 0, -453.63635, -297.2727, 58.563995, -78.47576, -58.563995, 78.47576, -668.1818, -203.63635, 0, 0, 0, 0, -726.3636, -21.81818)
-}
-point_count = 11
-
-[sub_resource type="Gradient" id="Gradient_kdubu"]
-offsets = PackedFloat32Array(0, 0.7380319)
+[ext_resource type="PackedScene" uid="uid://djq8w7yrsqhj4" path="res://ai_opponent.tscn" id="6_7mycd"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
 _data = {
@@ -26,25 +19,14 @@ point_count = 11
 position = Vector2(2, -9)
 texture = ExtResource("1_h2yge")
 
-[node name="Track" type="Path2D" parent="." unique_id=970288615]
-scale = Vector2(1.1, 1.1)
-curve = SubResource("Curve2D_kdubu")
-script = ExtResource("2_1bvp3")
-
-[node name="Line2D" type="Line2D" parent="Track" unique_id=1636038644]
-visible = false
-width = 40.0
-gradient = SubResource("Gradient_kdubu")
+[node name="Track" parent="." unique_id=697303649 instance=ExtResource("2_lquwl")]
+flip_balls = null
 
 [node name="Track2" type="Path2D" parent="." unique_id=8021463]
 scale = Vector2(1.1, 1.1)
 curve = SubResource("Curve2D_h2yge")
 script = ExtResource("2_1bvp3")
-
-[node name="Line2D" type="Line2D" parent="Track2" unique_id=1917343594]
-visible = false
-width = 40.0
-gradient = SubResource("Gradient_kdubu")
+flip_balls = null
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1639557962]
 position = Vector2(1, -2)
@@ -52,8 +34,13 @@ zoom = Vector2(0.6, 0.613)
 
 [node name="Player" parent="." unique_id=48903084 instance=ExtResource("3_lquwl")]
 position = Vector2(-4.0000005, 302)
-rotation = -1.5529062
+rotation = -1.5707964
 scale = Vector2(0.65, 0.65)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1499990589]
 texture = ExtResource("4_1bvp3")
+
+[node name="AIOpponent" parent="." unique_id=2000684706 instance=ExtResource("6_7mycd")]
+position = Vector2(-12.000001, -317)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)

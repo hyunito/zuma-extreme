@@ -8,7 +8,9 @@ var bullet_scene = preload("res://shot_ball.tscn")
 const BALL_TEXTURES = {
 	"red": preload("res://assets/balls/Red_ball.png"),
 	"blue": preload("res://assets/balls/Blue_ball.png"),
-	"yellow": preload("res://assets/balls/Yellow_ball.png")
+	"yellow": preload("res://assets/balls/Yellow_ball.png"),
+	"gray": preload("res://assets/balls/Gray_ball.png"),
+	"green": preload("res://assets/balls/Green_ball.png")
 }
 
 # 2. Store the current loaded color name

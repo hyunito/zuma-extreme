@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d383j0otedd7j"]
+
+[ext_resource type="Script" uid="uid://bb3kostg6vlx0" path="res://track.gd" id="1_mll3j"]
+
+[sub_resource type="Curve2D" id="Curve2D_kdubu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 729.0909, -38.181816, 0, 0, 0, 0, 724.5454, -153.63635, 0, 0, 0, 0, 424.54544, -154.54546, 0, 0, 0, 0, 420.9091, -295.45453, 0, 0, 0, 0, 122.72727, -295.45453, 0, 0, 0, 0, 119.99999, -155.45454, 0, 0, 0, 0, -147.27272, -154.54546, 0, 0, 0, 0, -148.18181, -297.2727, 0, 0, 0, 0, -453.63635, -297.2727, 58.563995, -78.47576, -58.563995, 78.47576, -668.1818, -203.63635, 0, 0, 0, 0, -726.3636, -21.81818)
+}
+point_count = 11
+
+[node name="Track" type="Path2D" unique_id=697303649]
+scale = Vector2(1.1, 1.1)
+curve = SubResource("Curve2D_kdubu")
+script = ExtResource("1_mll3j")

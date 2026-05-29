@@ -5,7 +5,9 @@ extends PathFollow2D
 const BALL_TEXTURES = {
 	"red": preload("res://assets/balls/Red_ball.png"),
 	"blue": preload("res://assets/balls/Blue_ball.png"),
-	"yellow": preload("res://assets/balls/Yellow_ball.png")
+	"yellow": preload("res://assets/balls/Yellow_ball.png"),
+	"gray": preload("res://assets/balls/Gray_ball.png"),
+	"green": preload("res://assets/balls/Green_ball.png")
 }
 
 var ball_color: String = "red"

@@ -9,6 +9,7 @@ radius = 34.5
 [node name="Ball" type="PathFollow2D" unique_id=1668362513]
 loop = false
 script = ExtResource("1_41u45")
+speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=123341007]
 scale = Vector2(0.45, 0.45)
