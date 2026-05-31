@@ -22,8 +22,6 @@ func _physics_process(delta: float) -> void:
 		sprite.frame = int(progress / distance_per_frame) % 10
 		sprite.flip_v = should_flip
 
-
-
 func set_color(new_color: String) -> void:
 	ball_color = new_color
 	

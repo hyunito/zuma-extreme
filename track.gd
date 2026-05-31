@@ -2,18 +2,21 @@ extends Path2D
 
 const BALL_SCENE = preload("res://ball.tscn")
 const COLORS = ["red", "blue", "yellow", "gray", "green"]
+@export var flip_balls: bool = true
+
 var pause_timer: float = 0.0
-
 var balls_to_destroy: Array[PathFollow2D] = []
-
 var was_gap_active: bool = false
 var collision_recoil: float = 0.0
 var ball_diameter: float = 65.0 
 var track_speed: float = 150.0
-@export var flip_balls: bool = true
 var combo_count: int = 0
 var balls: Array[PathFollow2D] = []
 var last_gap_index: int = -1
+var current_shooter: String = "player"
+
+signal match_cleared(color: String, size: int, shooter: String)
+signal ball_escaped(color: String)
 
 
 func _ready() -> void:
@@ -102,8 +105,8 @@ func _physics_process(delta: float) -> void:
 		var dead_ball = balls.pop_front()
 		dead_ball.queue_free() 
 
-func insert_ball(hit_ball: PathFollow2D, hit_offset: float, color: String, texture: Texture2D) -> void:
-
+func insert_ball(hit_ball: PathFollow2D, hit_offset: float, color: String, texture: Texture2D, shooter: String) -> void:
+	current_shooter = shooter
 	var new_ball = BALL_SCENE.instantiate()
 	add_child(new_ball)
 	new_ball.set_color(color) 
@@ -178,6 +181,7 @@ func check_matches(inserted_index: int) -> bool:
 			
 		
 		pause_timer = 0.25
+		match_cleared.emit(target_color, matching_indices.size(), current_shooter)
 		return true 
 		
 	return false

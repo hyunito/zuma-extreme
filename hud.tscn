@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://qufli3xx25m6"]
+
+[ext_resource type="Texture2D" uid="uid://dmtpkntpj5mmd" path="res://assets/health_bar/health_under.png" id="1_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://htovqpps1fvy" path="res://assets/health_bar/health_over.png" id="2_640wx"]
+[ext_resource type="Texture2D" uid="uid://ckiowxljk8vy2" path="res://assets/health_bar/health_progress.png" id="3_a2258"]
+
+[sub_resource type="FontVariation" id="FontVariation_8sq4i"]
+
+[node name="HUD" type="CanvasLayer" unique_id=992760423]
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="." unique_id=1442632708]
+offset_left = 7.000002
+offset_top = 492.0
+offset_right = 1927.0
+offset_bottom = 1572.0
+scale = Vector2(0.2, 0.2)
+max_value = 50.0
+value = 50.0
+texture_under = ExtResource("1_8sq4i")
+texture_over = ExtResource("2_640wx")
+texture_progress = ExtResource("3_a2258")
+
+[node name="AIHealthBar" type="TextureProgressBar" parent="." unique_id=578168619]
+modulate = Color(2.110537, 0.9376205, 0.42366144, 0.99215686)
+offset_left = 759.0
+offset_top = -67.99999
+offset_right = 2679.0
+offset_bottom = 1012.0
+scale = Vector2(0.2, 0.2)
+max_value = 50.0
+value = 50.0
+texture_under = ExtResource("1_8sq4i")
+texture_over = ExtResource("2_640wx")
+texture_progress = ExtResource("3_a2258")
+
+[node name="TimerLabel" type="Label" parent="." unique_id=411146101]
+offset_left = 1038.0
+offset_top = 74.0
+offset_right = 1436.0
+offset_bottom = 347.0
+theme_override_fonts/font = SubResource("FontVariation_8sq4i")
+theme_override_font_sizes/font_size = 36
+text = "3:00"

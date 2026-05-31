@@ -29,7 +29,7 @@ func _unhandled_input(event):
 
 func shoot():
 	var new_bullet = bullet_scene.instantiate()
-	
+	new_bullet.shooter = "player"
 	new_bullet.ball_color = current_color
 	new_bullet.get_node("Sprite2D").texture = BALL_TEXTURES[current_color]
 	
