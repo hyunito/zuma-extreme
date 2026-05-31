@@ -21,15 +21,15 @@ var learning_rate: float = 0.2
 var discount_factor: float = 0.9
 var exploration_rate: float = 0.15
 var q_table: Dictionary = {}
-
+var wants_to_throw_away: bool = false
 var current_hp: float = 50.0
 var max_hp: float = 50.0
 var time_remaining: float = 180.0
 var total_match_time: float = 180.0
 
 var decision_timer: float = 0.0
-var decision_cooldown: float = .5 
-
+var decision_cooldown: float = .5
+var last_had_target: bool = false
 var last_state: int = 0
 var last_action: int = 0
 
@@ -55,6 +55,10 @@ func _ready() -> void:
 		player_track = get_parent().get_node_or_null("Track")
 		
 	reload()
+	load_brain()
+
+func _exit_tree() -> void:
+	save_brain()
 
 
 func _physics_process(delta: float) -> void:
@@ -118,42 +122,55 @@ func choose_action(state: int) -> int:
 	return best_action
 
 func find_target_ball(action: int) -> PathFollow2D:
-
-	if action == Actions.HEAL or action == Actions.CLEAR:
+	if action == Actions.WAIT:
+		return null
+		
+	if action == Actions.HEAL:
 		if not ai_track or ai_track.balls.is_empty():
 			return null
-		
-		var target_colors = ["green", "yellow"] if action == Actions.HEAL else [current_color]
-		var candidates = []
-		for ball in ai_track.balls:
-			if ball.ball_color in target_colors:
-				candidates.append(ball)
-		
-		if not candidates.is_empty():
-			return candidates.pick_random()
-		return ai_track.balls.pick_random() 
-
-	
-	elif action == Actions.ATTACK:
-		if not player_track or player_track.balls.is_empty():
+		if current_color in ["green", "yellow"]:
+			var same_color_candidates = []
+			for ball in ai_track.balls:
+				if ball.ball_color == current_color:
+					same_color_candidates.append(ball)
 			
-			if ai_track and not ai_track.balls.is_empty():
-				return ai_track.balls.pick_random()
+			if not same_color_candidates.is_empty():
+				return same_color_candidates.pick_random()
+				
+		action = Actions.CLEAR 
+
+	if action == Actions.CLEAR:
+		if not ai_track or ai_track.balls.is_empty():
 			return null
 			
-		var candidates = []
-		for ball in player_track.balls:
-
-			if has_line_of_sight(ball.global_position):
-
-				candidates.append(ball)
+		var same_color_candidates = []
+		for ball in ai_track.balls:
+			if ball.ball_color == current_color:
+				same_color_candidates.append(ball)
 				
-		if not candidates.is_empty():
-			return candidates.pick_random()
+		if not same_color_candidates.is_empty():
+			return same_color_candidates.pick_random()
 			
-		if ai_track and not ai_track.balls.is_empty():
-			return ai_track.balls.pick_random()
+		return null
+
+	if action == Actions.ATTACK:
 			
+		var same_color_candidates = []
+		for ball in player_track.balls:
+			if ball.ball_color == current_color and has_line_of_sight(ball.global_position):
+				same_color_candidates.append(ball)
+				
+		if not same_color_candidates.is_empty():
+			return same_color_candidates.pick_random()
+			
+		var any_sight_candidates = []
+		for ball in player_track.balls:
+			if has_line_of_sight(ball.global_position):
+				any_sight_candidates.append(ball)
+				
+		if not any_sight_candidates.is_empty():
+			return any_sight_candidates.pick_random()
+
 	return null
 
 func has_line_of_sight(target_pos: Vector2) -> bool:
@@ -200,47 +217,134 @@ func shoot() -> void:
 	get_parent().add_child(new_bullet)
 	
 	reload()
-func learn(state: int, action: int, reward: float, next_state: int) -> void:
+
+func learn(state: int, action: int, reward: float, current_state: int) -> void:
 	var old_q = q_table[state][action]
 	
 	var max_future_q = -99999.0
-	for a in q_table[next_state]:
-		if q_table[next_state][a] > max_future_q:
-			max_future_q = q_table[next_state][a]
+	for a in q_table[current_state]:
+		if q_table[current_state][a] > max_future_q:
+			max_future_q = q_table[current_state][a]
 			
 	q_table[state][action] = old_q + learning_rate * (reward + discount_factor * max_future_q - old_q)
+
 func think_and_act(delta: float) -> void:
 	decision_timer += delta
 	if decision_timer >= decision_cooldown:
 		decision_timer = 0.0
-		
-		var reward = 0.0
-		var next_state = get_fuzzy_state()
-		
-		if last_action == Actions.HEAL and current_hp < 20.0:
-			reward = 10.0
-		elif last_action == Actions.ATTACK:
-			reward = 5.0 
-			
-		learn(last_state, last_action, reward, next_state)
-		
-		var state = next_state
-		var action = choose_action(state)
+		var current_state = get_fuzzy_state()
+		match current_state:
+			0: 
+				decision_cooldown = .3
+			1: 
+				decision_cooldown = .3
+			2: 
+				decision_cooldown = .25
+			3: 
+				decision_cooldown = .5
+			4: 
+				decision_cooldown = .5
+			5: 
+				decision_cooldown = .3
+			6: 
+				decision_cooldown = .7
+			7: 
+				decision_cooldown = .5
+			8: 
+				decision_cooldown = .25
+		var action = choose_action(current_state)
 		
 		target_ball = find_target_ball(action)
+		var reward = 0.0
 		
-		last_state = state
+		
+		if wants_to_throw_away:
+			reward = -8.0 
+		elif last_action == Actions.WAIT:
+			reward = -0.5
+		elif last_action == Actions.HEAL and current_hp < 45.0:
+			if last_had_target:
+				reward = 4.0 
+			else:
+				reward = -2.0 
+		elif last_action == Actions.CLEAR:
+			if last_had_target:
+				reward = 10.0 
+			else:
+				reward = -2.0 
+		elif last_action == Actions.ATTACK:
+			if last_had_target:
+				reward = 5.0 
+			else:
+				reward = -2.0 
+
+		learn(last_state, last_action, reward, current_state)
+		last_had_target = (target_ball != null)
+
+		if target_ball == null and action != Actions.WAIT:
+			wants_to_throw_away = true
+		else:
+			wants_to_throw_away = false
+			
+		last_state = current_state
 		last_action = action
-		
+
 	if is_instance_valid(target_ball):
+		wants_to_throw_away = false
 		var target_pos = target_ball.global_position
 		var target_angle = (target_pos - global_position).angle()
 		
 		rotation = rotate_toward(rotation, target_angle, smooth_rotate_speed * delta)
 		
 		var angle_diff = abs(angle_difference(rotation, target_angle))
-		if angle_diff < 0.08 and has_line_of_sight(target_pos):
+		if angle_diff < 0.04 and has_line_of_sight(target_pos):
 			shoot()
 			target_ball = null 
+			
+	elif wants_to_throw_away:
+		var throw_angle = -1.57079
+		rotation = rotate_toward(rotation, throw_angle, smooth_rotate_speed * delta)
+		
+		var angle_diff = abs(angle_difference(rotation, throw_angle))
+		if angle_diff < 0.05:
+			shoot()
+			wants_to_throw_away = false
 	else:
 		target_ball = null
+
+
+func save_brain() -> void:
+	var file = FileAccess.open("user://ai_brain.json", FileAccess.WRITE)
+	if file:
+		var json_string = JSON.stringify(q_table)
+		file.store_string(json_string)
+		file.close()
+		print("Successfully saved scorecard to disk at user://ai_brain.json.")
+	else:
+		print("Could not open file to save scorecard.")
+
+func load_brain() -> void:
+	var file_path = "user://ai_brain.json"
+	
+	if not FileAccess.file_exists(file_path):
+		if FileAccess.file_exists("res://ai_brain.json"):
+			file_path = "res://ai_brain.json"
+			print("No local save found. Loading pre-trained shipped brain from res://")
+		else:
+			print("No local save found. Starting with a fresh blank scorecard")
+			return
+			
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	if file:
+		var content = file.get_as_text()
+		file.close()
+		
+		var parsed_data = JSON.parse_string(content)
+		if parsed_data is Dictionary:
+			for str_state in parsed_data.keys():
+				var state_int = int(str_state)
+				var actions_dict = parsed_data[str_state]
+				for str_action in actions_dict.keys():
+					var action_int = int(str_action)
+					q_table[state_int][action_int] = float(actions_dict[str_action])
+			print("Successfully loaded brain scorecard")
