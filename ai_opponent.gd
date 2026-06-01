@@ -107,7 +107,7 @@ func choose_action(state: int) -> int:
 		return Actions.values().pick_random()
 		
 	var state_actions = q_table[state]
-	var best_action = Actions.HEAL
+	var best_action = Actions.ATTACK
 	var max_q_value = -99999.0
 	
 	for action in state_actions:
@@ -121,20 +121,34 @@ func choose_action(state: int) -> int:
 func find_target_ball(action: int) -> PathFollow2D:
 	if action == Actions.WAIT:
 		return null
-		
+
 	if action == Actions.HEAL:
 		if not ai_track or ai_track.balls.is_empty():
-			return null
-		if current_color in ["green", "yellow"]:
+			action = Actions.ATTACK 
+		elif current_color in ["green", "yellow"]:
 			var same_color_candidates = []
 			for ball in ai_track.balls:
-				if ball.ball_color == current_color:
+				if ball.ball_color == current_color and has_line_of_sight(ball.global_position):
 					same_color_candidates.append(ball)
 			
 			if not same_color_candidates.is_empty():
 				return same_color_candidates.pick_random()
 				
-		action = Actions.CLEAR 
+		action = Actions.CLEAR
+
+	if action == Actions.CLEAR:
+		if not ai_track or ai_track.balls.is_empty():
+			action = Actions.ATTACK # Fallback if empty!
+		else:
+			var same_color_candidates = []
+			for ball in ai_track.balls:
+				if ball.ball_color == current_color and has_line_of_sight(ball.global_position):
+					same_color_candidates.append(ball)
+					
+			if not same_color_candidates.is_empty():
+				return same_color_candidates.pick_random()
+			
+		action = Actions.ATTACK
 
 	if action == Actions.CLEAR:
 		if not ai_track or ai_track.balls.is_empty():
@@ -243,7 +257,7 @@ func think_and_act(delta: float) -> void:
 			5: 
 				decision_cooldown = .3
 			6: 
-				decision_cooldown = .7
+				decision_cooldown = .5
 			7: 
 				decision_cooldown = .5
 			8: 

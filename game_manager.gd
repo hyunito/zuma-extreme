@@ -6,6 +6,8 @@ class_name GameManager
 var player_hp_label: Label = null
 var ai_hp_label: Label = null
 
+@export var afk_training_mode: bool = true 
+var auto_restart_timer: float = 0.0
 
 var player_hp: float = 50.0
 var ai_hp: float = 50.0
@@ -23,41 +25,43 @@ var ai_hud_bar: TextureProgressBar = null
 var timer_label: Label = null
 
 func _ready() -> void:
-	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	player_hp = max_hp
 	ai_hp = max_hp
 	time_remaining = match_time_limit
 	player_hp_label = get_node_or_null("HUD/PlayerHPLabel")
 	ai_hp_label = get_node_or_null("HUD/AIHPLabel")
-
 	player_track = get_node_or_null("Track")
 	ai_track = get_node_or_null("Track2")
 	player_node = get_node_or_null("Player")
 	ai_node = get_node_or_null("AIOpponent")
-
 	player_hud_bar = get_node_or_null("HUD/PlayerHealthBar")
 	ai_hud_bar = get_node_or_null("HUD/AIHealthBar")
 	timer_label = get_node_or_null("HUD/TimerLabel")
 	
 	_update_hud_bars()
-
 	if player_track:
 		player_track.match_cleared.connect(_on_match_cleared)
 		
 	if ai_track:
 		ai_track.match_cleared.connect(_on_match_cleared)
 		
-
-
 func _process(delta: float) -> void:
 	if is_game_over:
-		#if Input.is_key_pressed(KEY_SPACE) or Input.is_action_just_pressed("ui_accept"):
-		#	if get_tree():
-		get_tree().paused = false 
-		get_tree().reload_current_scene()
-		return
-	
+		if afk_training_mode:
+			auto_restart_timer += delta
+			if auto_restart_timer >= 2.0:
+				auto_restart_timer = 0.0
+				if get_tree():
+					get_tree().paused = false 
+					get_tree().reload_current_scene()
+		else:
+			if Input.is_key_pressed(KEY_SPACE) or Input.is_action_just_pressed("ui_accept"):
+				if get_tree():
+					get_tree().paused = false 
+					get_tree().reload_current_scene()
+		return # Stop execution when game is over
+
 	time_remaining -= delta
 	_update_timer_label()
 	

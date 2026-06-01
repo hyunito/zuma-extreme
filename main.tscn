@@ -29,8 +29,10 @@ position = Vector2(-1, 10)
 texture = ExtResource("1_h2yge")
 
 [node name="Track" parent="." unique_id=697303649 instance=ExtResource("2_lquwl")]
+process_mode = 1
 
 [node name="Track2" type="Path2D" parent="." unique_id=8021463]
+process_mode = 1
 scale = Vector2(1.1, 1.1)
 curve = SubResource("Curve2D_h2yge")
 script = ExtResource("2_1bvp3")
@@ -40,14 +42,17 @@ position = Vector2(1, -2)
 zoom = Vector2(0.6, 0.613)
 
 [node name="Player" parent="." unique_id=48903084 instance=ExtResource("3_lquwl")]
+process_mode = 1
 position = Vector2(-337, 158)
 rotation = -1.5707964
 scale = Vector2(0.65, 0.65)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1499990589]
+position = Vector2(23, 0)
 texture = ExtResource("4_1bvp3")
 
 [node name="AIOpponent" parent="." unique_id=2000684706 node_paths=PackedStringArray("ai_track", "player_track") instance=ExtResource("6_7mycd")]
+process_mode = 1
 position = Vector2(-338, -148)
 rotation = 1.5707964
 scale = Vector2(0.6, 0.6)
