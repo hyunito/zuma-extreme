@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Zuma Extreme"
-run/main_scene="uid://4nfwanimq48n"
+run/main_scene="uid://dbq0pqwrdfibm"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.svg"
 
 [autoload]
 
 _mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
@@ -31,3 +35,4 @@ enabled=PackedStringArray("res://addons/godot_ai/plugin.cfg")
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

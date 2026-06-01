@@ -117,20 +117,20 @@ func insert_ball(hit_ball: PathFollow2D, hit_offset: float, color: String, textu
 	
 	if hit_front:
 
+		new_ball.progress = hit_ball.progress + ball_diameter
+
+		for child in get_children():
+			if child is PathFollow2D and child != new_ball:
+				if child.progress > hit_ball.progress:
+					child.progress += ball_diameter
+	else:
+
 		new_ball.progress = hit_ball.progress
 
 		for child in get_children():
 			if child is PathFollow2D and child != new_ball:
-				if child.progress <= hit_ball.progress:
-					child.progress -= ball_diameter
-	else:
-
-		new_ball.progress = hit_ball.progress - ball_diameter
-
-		for child in get_children():
-			if child is PathFollow2D and child != new_ball:
-				if child.progress < hit_ball.progress:
-					child.progress -= ball_diameter
+				if child.progress >= hit_ball.progress:
+					child.progress += ball_diameter
 
 	var hit_index = balls.find(hit_ball)
 	if hit_front:
