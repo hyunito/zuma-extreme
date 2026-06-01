@@ -3,6 +3,7 @@ extends Node2D
 var bullet_scene = preload("res://shot_ball.tscn")
 @onready var mouth_position = $Marker2D
 @onready var loaded_ball_sprite = $LoadedBall
+@onready var sfx_shoot: AudioStreamPlayer = $"../sfx_shoot"
 
 # 1. Map color names (strings) to their textures
 const BALL_TEXTURES = {
@@ -28,6 +29,8 @@ func _unhandled_input(event):
 		shoot()
 
 func shoot():
+	sfx_shoot.play()
+	
 	var new_bullet = bullet_scene.instantiate()
 	new_bullet.shooter = "player"
 	new_bullet.ball_color = current_color

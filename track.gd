@@ -3,6 +3,7 @@ const EXPLOSION_SCENE = preload("res://explosion.tscn")
 const BALL_SCENE = preload("res://ball.tscn")
 const COLORS = ["red", "blue", "yellow", "gray", "green"]
 @export var flip_balls: bool = true
+@onready var sfx_clear: AudioStreamPlayer = $"../sfx_clear"
 
 var pause_timer: float = 0.0
 var balls_to_destroy: Array[PathFollow2D] = []
@@ -167,6 +168,8 @@ func check_matches(inserted_index: int) -> bool:
 			
 	
 	if matching_indices.size() >= 3:
+		
+		sfx_clear.play()
 
 		matching_indices.sort_custom(func(a, b): return a > b)
 		

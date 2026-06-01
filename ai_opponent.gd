@@ -3,6 +3,7 @@ extends Node2D
 var bullet_scene = preload("res://shot_ball.tscn")
 @onready var mouth_position = $Marker2D
 @onready var loaded_ball_sprite = $LoadedBall
+@onready var sfx_shoot: AudioStreamPlayer = $"../sfx_shoot"
 
 @export var ai_track: Node2D     
 @export var player_track: Node2D 
@@ -200,6 +201,7 @@ func reload() -> void:
 		loaded_ball_sprite.texture = BALL_TEXTURES[current_color]
 
 func shoot() -> void:
+	sfx_shoot.play()
 	if not bullet_scene: return
 	var new_bullet = bullet_scene.instantiate()
 	new_bullet.shooter = "ai"

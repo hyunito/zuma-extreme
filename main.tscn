@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://2rm0dtrghjim" path="res://assets/background/piko 2-export.png" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://djq8w7yrsqhj4" path="res://ai_opponent.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://qufli3xx25m6" path="res://hud.tscn" id="8_kek77"]
+[ext_resource type="AudioStream" uid="uid://dgedyb7fd5iuu" path="res://assets/sfx/shoot.mp3" id="9_kek77"]
+[ext_resource type="AudioStream" uid="uid://iuo1k2bhv332" path="res://assets/sfx/clear.mp3" id="10_4c57u"]
+[ext_resource type="AudioStream" uid="uid://dghmdxh7qiqfi" path="res://assets/sfx/health_restore.mp3" id="11_dg77c"]
+[ext_resource type="AudioStream" uid="uid://dnfkswbqoen8f" path="res://assets/sfx/health_reduce.mp3" id="12_ycdy4"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
 _data = {
@@ -49,3 +53,19 @@ rotation = 1.5707964
 scale = Vector2(0.6, 0.6)
 ai_track = NodePath("../Track")
 player_track = NodePath("../Track2")
+
+[node name="sfx_shoot" type="AudioStreamPlayer" parent="." unique_id=764035786]
+stream = ExtResource("9_kek77")
+volume_db = -15.0
+
+[node name="sfx_clear" type="AudioStreamPlayer" parent="." unique_id=1612588665]
+stream = ExtResource("10_4c57u")
+volume_db = -15.0
+
+[node name="sfx_restore" type="AudioStreamPlayer" parent="." unique_id=1074830540]
+stream = ExtResource("11_dg77c")
+volume_db = -20.0
+
+[node name="sfx_reduce" type="AudioStreamPlayer" parent="." unique_id=1035195295]
+stream = ExtResource("12_ycdy4")
+volume_db = -20.0
