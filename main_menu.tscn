@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bbq6qyjyfp62l" path="res://assets/background/main_menu.jpg" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://drq7gyeosjl0o" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://cot6kufla0nga" path="res://bgm_main_menu.tscn" id="2_t8a5h"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
 texture = ExtResource("1_06t4h")
@@ -49,6 +50,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_7vrkn")
 
+[node name="BGM" parent="." unique_id=895995161 instance=ExtResource("2_t8a5h")]
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1165099686]
 layout_mode = 1
 anchors_preset = 8
@@ -56,9 +59,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -153.0
-offset_top = 68.0
-offset_right = 153.0
+offset_left = -137.5
+offset_top = 36.0
+offset_right = 137.5
 offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -76,7 +79,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nlkkf")
-text = "Play Game"
+text = "▶️ Play Game"
 
 [node name="Button2" type="Button" parent="VBoxContainer" unique_id=1067473748]
 layout_mode = 2
@@ -90,7 +93,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nlkkf")
-text = "Options"
+text = "⚙️ Options"
 
 [node name="Button3" type="Button" parent="VBoxContainer" unique_id=1452749633]
 layout_mode = 2
@@ -104,6 +107,23 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nlkkf")
-text = "Tutorial"
+text = "❓ Tutorial"
+
+[node name="Button4" type="Button" parent="VBoxContainer" unique_id=521366010]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nlkkf")
+text = "🚪	 Exit"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_exit_pressed"]

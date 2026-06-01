@@ -22,6 +22,9 @@ func _ready() -> void:
 	reload()
 
 func _process(_delta):
+	if get_tree().paused:
+		return
+
 	look_at(get_global_mouse_position())
 
 func _unhandled_input(event):

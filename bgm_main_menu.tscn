@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cot6kufla0nga"]
+
+[ext_resource type="AudioStream" uid="uid://dll7vox201lva" path="res://assets/sfx/main_menu_bgm.mp3" id="1_rqdqq"]
+[ext_resource type="Script" uid="uid://cq0scqi3tfq88" path="res://bgm_main_menu.gd" id="2_hl03a"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=895995161]
+stream = ExtResource("1_rqdqq")
+volume_db = -15.0
+autoplay = true
+bus = &"BGM"
+script = ExtResource("2_hl03a")

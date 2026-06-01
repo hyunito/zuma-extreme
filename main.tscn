@@ -12,12 +12,40 @@
 [ext_resource type="AudioStream" uid="uid://iuo1k2bhv332" path="res://assets/sfx/clear.mp3" id="10_4c57u"]
 [ext_resource type="AudioStream" uid="uid://dghmdxh7qiqfi" path="res://assets/sfx/health_restore.mp3" id="11_dg77c"]
 [ext_resource type="AudioStream" uid="uid://dnfkswbqoen8f" path="res://assets/sfx/health_reduce.mp3" id="12_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://2lam4ge1l0p0" path="res://assets/sfx/main_bgm.mp3" id="13_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://bndrf6jt4yc46" path="res://assets/sfx/sfx_win.mp3" id="14_vivmo"]
+[ext_resource type="AudioStream" uid="uid://c2adkdmpd1nan" path="res://assets/sfx/sfx_lose.mp3" id="15_2cqfq"]
+[ext_resource type="AudioStream" uid="uid://6ok8am3bulor" path="res://assets/sfx/sfx_draw.mp3" id="16_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://bxle02a1ovliw" path="res://pause_menu.tscn" id="17_yaehf"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 729.0909, 14.545454, 0, 0, 0, 0, 728.18176, 137.27272, 0, 0, 0, 0, 425.45453, 138.18181, 0, 0, 0, 0, 423.63635, 287.2727, 0, 0, 0, 0, 123.63636, 283.63635, 0, 0, 0, 0, 122.72727, 138.18181, 0, 0, 0, 0, -147.27272, 137.27272, 0, 0, 0, 0, -144.54546, 287.2727, 0, 0, 0, 0, -451.81818, 287.2727, 85.75997, 84.1436, -85.75997, -84.1436, -635.4545, 206.36363, 0, 0, 0, 0, -723.63635, -4.5454545)
 }
 point_count = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaehf"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_074og"]
+bg_color = Color(0.26147652, 0.26147655, 0.2614764, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cegan"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
 
 [node name="Level 1 Stage_Piko" type="Node2D" unique_id=1845644771]
 script = ExtResource("1_5vw27")
@@ -57,15 +85,59 @@ player_track = NodePath("../Track2")
 [node name="sfx_shoot" type="AudioStreamPlayer" parent="." unique_id=764035786]
 stream = ExtResource("9_kek77")
 volume_db = -15.0
+bus = &"SFX"
 
 [node name="sfx_clear" type="AudioStreamPlayer" parent="." unique_id=1612588665]
 stream = ExtResource("10_4c57u")
-volume_db = -15.0
+volume_db = -10.0
+bus = &"SFX"
 
 [node name="sfx_restore" type="AudioStreamPlayer" parent="." unique_id=1074830540]
 stream = ExtResource("11_dg77c")
-volume_db = -20.0
+volume_db = -15.0
+bus = &"SFX"
 
 [node name="sfx_reduce" type="AudioStreamPlayer" parent="." unique_id=1035195295]
 stream = ExtResource("12_ycdy4")
-volume_db = -20.0
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="bgm_main" type="AudioStreamPlayer" parent="." unique_id=1481155278]
+stream = ExtResource("13_ycdy4")
+volume_db = -15.0
+autoplay = true
+bus = &"BGM"
+
+[node name="sfx_win" type="AudioStreamPlayer" parent="." unique_id=696451420]
+stream = ExtResource("14_vivmo")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="sfx_lose" type="AudioStreamPlayer" parent="." unique_id=200379388]
+stream = ExtResource("15_2cqfq")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="sfx_draw" type="AudioStreamPlayer" parent="." unique_id=1623165829]
+stream = ExtResource("16_2cqfq")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="PauseMenu" parent="." unique_id=747693120 instance=ExtResource("17_yaehf")]
+
+[node name="Button2" type="Button" parent="." unique_id=1878775349]
+offset_left = -925.0
+offset_top = -500.0
+offset_right = -845.0
+offset_bottom = -420.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_yaehf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_074og")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cegan")
+text = "❚❚"
+
+[connection signal="pressed" from="Button2" to="." method="_on_pause_pressed"]

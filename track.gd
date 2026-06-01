@@ -38,6 +38,8 @@ func spawn_ball() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if get_tree().paused:
+		return
 
 	if pause_timer > 0.0:
 		pause_timer -= delta

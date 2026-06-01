@@ -3,6 +3,12 @@ class_name GameManager
 
 @export var max_hp: float = 50.0
 @export var match_time_limit: float = 180.0 
+@onready var sfx_restore: AudioStreamPlayer = $sfx_restore
+@onready var sfx_reduce: AudioStreamPlayer = $sfx_reduce
+@onready var sfx_win: AudioStreamPlayer = $sfx_win
+@onready var sfx_lose: AudioStreamPlayer = $sfx_lose
+@onready var sfx_draw: AudioStreamPlayer = $sfx_draw
+@onready var bgm_main: AudioStreamPlayer = $bgm_main
 var player_hp_label: Label = null
 var ai_hp_label: Label = null
 
@@ -23,7 +29,8 @@ var ai_hud_bar: TextureProgressBar = null
 var timer_label: Label = null
 
 func _ready() -> void:
-	
+	BgmMainMenu.stop_music()
+	bgm_main.play()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	player_hp = max_hp
 	ai_hp = max_hp
@@ -52,12 +59,14 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_game_over:
-		#if Input.is_key_pressed(KEY_SPACE) or Input.is_action_just_pressed("ui_accept"):
-		#	if get_tree():
-		get_tree().paused = false 
-		get_tree().reload_current_scene()
+		if Input.is_key_pressed(KEY_SPACE):
+			get_tree().paused = false 
+			get_tree().reload_current_scene()
 		return
-	
+
+	if get_tree().paused:
+		return
+
 	time_remaining -= delta
 	_update_timer_label()
 	
@@ -77,26 +86,34 @@ func _on_match_cleared(color: String, size: int, shooter: String) -> void:
 	if shooter == "player":
 		match color:
 			"green":
-				heal_player(2.0 * multiplier) 
+				heal_player(2.0 * multiplier)
+				sfx_restore.play() 
 			"yellow":
-				heal_player(1.0 * multiplier) 
+				heal_player(1.0 * multiplier)
+				sfx_restore.play() 
 			"red":
-				damage_ai(4.0 * multiplier)  
+				damage_ai(4.0 * multiplier)
+				sfx_reduce.play()  
 			"gray":
-				damage_ai(2.0 * multiplier)  
+				damage_ai(2.0 * multiplier)
+				sfx_reduce.play()  
 			"blue":
 				pass 
 				
 	elif shooter == "ai":
 		match color:
 			"green":
-				heal_ai(2.0 * multiplier)     
+				heal_ai(2.0 * multiplier)
+				sfx_restore.play()     
 			"yellow":
-				heal_ai(1.0 * multiplier)    
+				heal_ai(1.0 * multiplier)
+				sfx_restore.play()    
 			"red":
 				damage_player(4.0 * multiplier)
+				sfx_reduce.play()
 			"gray":
-				damage_player(2.0 * multiplier) 
+				damage_player(2.0 * multiplier)
+				sfx_reduce.play() 
 			"blue":
 				pass 
 
@@ -152,6 +169,13 @@ func _update_timer_label() -> void:
 		timer_label.text = "%02d:%02d" % [minutes, seconds]
 
 func trigger_game_over(winner_text: String) -> void:
+	bgm_main.stop()
+	if "PLAYER WINS" in winner_text.to_upper():
+		sfx_win.play()
+	elif "DRAW" in winner_text.to_upper():
+		sfx_draw.play()
+	else:
+		sfx_lose.play()
 	is_game_over = true
 	if get_tree():
 		get_tree().paused = true
@@ -178,8 +202,10 @@ func trigger_game_over(winner_text: String) -> void:
 	
 	msg_label.add_theme_font_size_override("font_size", 48)
 	
-	if "WIN" in winner_text.to_upper() or "PLAYER WINS" in winner_text.to_upper():
+	if "PLAYER WINS" in winner_text.to_upper():
 		msg_label.add_theme_color_override("font_color", Color(0.2, 1.0, 0.2))
+	elif "DRAW" in winner_text.to_upper():
+		msg_label.add_theme_color_override("font_color", Color(0.2, 0.6, 1.0))
 	else:
 		msg_label.add_theme_color_override("font_color", Color(1.0, 0.2, 0.2))
 	
@@ -196,3 +222,6 @@ func trigger_game_over(winner_text: String) -> void:
 	container.add_child(sub_label)
 	overlay.add_child(container)
 	add_child(overlay)
+
+func _on_pause_pressed() -> void:
+	$PauseMenu.show_pause_menu()

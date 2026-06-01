@@ -60,6 +60,9 @@ func _exit_tree() -> void:
 	save_brain()
 
 func _physics_process(delta: float) -> void:
+	if get_tree().paused:
+		return
+
 	think_and_act(delta)
 
 enum Actions { HEAL, ATTACK, CLEAR, WAIT }

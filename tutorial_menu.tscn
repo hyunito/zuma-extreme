@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://dqvyil3c6yhdr"]
+
+[ext_resource type="Script" uid="uid://ck6rvpr8ejinq" path="res://tutorial_menu.gd" id="1_w2y4n"]
+[ext_resource type="Texture2D" uid="uid://b7kxbta6307fr" path="res://assets/background/tutorial_menu.jpg" id="2_w2y4n"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
+texture = ExtResource("2_w2y4n")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1y1va"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_651rb"]
+bg_color = Color(0.26147652, 0.26147655, 0.2614764, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3m2k"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="TutorialMenu" type="Control" unique_id=261194481]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w2y4n")
+
+[node name="Panel" type="Panel" parent="." unique_id=535802020]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7vrkn")
+
+[node name="Button" type="Button" parent="." unique_id=54325483]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 62.0
+offset_right = 90.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_1y1va")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_651rb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c3m2k")
+text = "🏠"
+
+[node name="Button2" type="Button" parent="." unique_id=1679295237]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 62.0
+offset_right = 1110.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_1y1va")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_651rb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c3m2k")
+text = "▶"
+
+[connection signal="pressed" from="Button" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_play_pressed"]
