@@ -3,6 +3,8 @@ class_name GameManager
 
 @export var max_hp: float = 50.0
 @export var match_time_limit: float = 180.0 
+@onready var sfx_restore: AudioStreamPlayer = $sfx_restore
+@onready var sfx_reduce: AudioStreamPlayer = $sfx_reduce
 
 var player_hp: float = 50.0
 var ai_hp: float = 50.0
@@ -72,26 +74,34 @@ func _on_match_cleared(color: String, size: int, shooter: String) -> void:
 	if shooter == "player":
 		match color:
 			"green":
-				heal_player(2.0 * multiplier) 
+				heal_player(2.0 * multiplier)
+				sfx_restore.play()
 			"yellow":
-				heal_player(1.0 * multiplier) 
+				heal_player(1.0 * multiplier)
+				sfx_restore.play()
 			"red":
-				damage_ai(4.0 * multiplier)  
+				damage_ai(4.0 * multiplier)
+				sfx_reduce.play()
 			"gray":
-				damage_ai(2.0 * multiplier)  
+				damage_ai(2.0 * multiplier)
+				sfx_reduce.play()  
 			"blue":
 				pass 
 				
 	elif shooter == "ai":
 		match color:
 			"green":
-				heal_ai(2.0 * multiplier)     
+				heal_ai(2.0 * multiplier)
+				sfx_restore.play()
 			"yellow":
-				heal_ai(1.0 * multiplier)    
+				heal_ai(1.0 * multiplier)
+				sfx_restore.play()
 			"red":
 				damage_player(4.0 * multiplier)
+				sfx_reduce.play()
 			"gray":
-				damage_player(2.0 * multiplier) 
+				damage_player(2.0 * multiplier)
+				sfx_reduce.play()
 			"blue":
 				pass 
 
