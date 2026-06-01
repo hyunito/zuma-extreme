@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Zuma Extreme"
-run/main_scene="uid://4nfwanimq48n"
+run/main_scene="uid://dbq0pqwrdfibm"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,7 @@ _mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_ai/plugin.cfg")
+enabled=PackedStringArray()
 
 [physics]
 
