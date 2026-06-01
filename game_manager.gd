@@ -3,6 +3,9 @@ class_name GameManager
 
 @export var max_hp: float = 50.0
 @export var match_time_limit: float = 180.0 
+var player_hp_label: Label = null
+var ai_hp_label: Label = null
+
 
 var player_hp: float = 50.0
 var ai_hp: float = 50.0
@@ -25,7 +28,9 @@ func _ready() -> void:
 	player_hp = max_hp
 	ai_hp = max_hp
 	time_remaining = match_time_limit
-	
+	player_hp_label = get_node_or_null("HUD/PlayerHPLabel")
+	ai_hp_label = get_node_or_null("HUD/AIHPLabel")
+
 	player_track = get_node_or_null("Track")
 	ai_track = get_node_or_null("Track2")
 	player_node = get_node_or_null("Player")
@@ -129,10 +134,16 @@ func _update_hud_bars() -> void:
 		ai_hud_bar.max_value = max_hp
 		ai_hud_bar.value = ai_hp
 		
+	if player_hp_label:
+		player_hp_label.text = "HP: %d/%d" % [int(player_hp), int(max_hp)]
+	if ai_hp_label:
+		ai_hp_label.text = "HP: %d/%d" % [int(ai_hp), int(max_hp)]
+		
 	if ai_node and "current_hp" in ai_node:
 		ai_node.current_hp = ai_hp
 	if ai_node and "time_remaining" in ai_node:
 		ai_node.time_remaining = time_remaining
+
 
 func _update_timer_label() -> void:
 	if timer_label:

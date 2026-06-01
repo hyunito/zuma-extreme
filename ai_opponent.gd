@@ -36,8 +36,6 @@ var last_action: int = 0
 var target_ball: PathFollow2D = null
 var smooth_rotate_speed: float = 8.0 
 
-
-
 func _ready() -> void:
 	
 	for state in range(9):
@@ -60,10 +58,8 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	save_brain()
 
-
 func _physics_process(delta: float) -> void:
 	think_and_act(delta)
-
 
 enum Actions { HEAL, ATTACK, CLEAR, WAIT }
 
@@ -230,10 +226,8 @@ func learn(state: int, action: int, reward: float, current_state: int) -> void:
 
 func think_and_act(delta: float) -> void:
 	decision_timer += delta
-	if decision_timer >= decision_cooldown:
-		decision_timer = 0.0
-		var current_state = get_fuzzy_state()
-		match current_state:
+	var current_state = get_fuzzy_state()
+	match current_state:
 			0: 
 				decision_cooldown = .3
 			1: 
@@ -252,11 +246,11 @@ func think_and_act(delta: float) -> void:
 				decision_cooldown = .5
 			8: 
 				decision_cooldown = .25
+	if decision_timer >= decision_cooldown:
+		decision_timer = 0.0
 		var action = choose_action(current_state)
-		
 		target_ball = find_target_ball(action)
 		var reward = 0.0
-		
 		
 		if wants_to_throw_away:
 			reward = -8.0 
@@ -274,7 +268,7 @@ func think_and_act(delta: float) -> void:
 				reward = -2.0 
 		elif last_action == Actions.ATTACK:
 			if last_had_target:
-				reward = 5.0 
+				reward = 6.0 
 			else:
 				reward = -2.0 
 
@@ -302,7 +296,7 @@ func think_and_act(delta: float) -> void:
 			target_ball = null 
 			
 	elif wants_to_throw_away:
-		var throw_angle = -1.57079
+		var throw_angle = 3 #-1.57079
 		rotation = rotate_toward(rotation, throw_angle, smooth_rotate_speed * delta)
 		
 		var angle_diff = abs(angle_difference(rotation, throw_angle))
@@ -311,7 +305,6 @@ func think_and_act(delta: float) -> void:
 			wants_to_throw_away = false
 	else:
 		target_ball = null
-
 
 func save_brain() -> void:
 	var file = FileAccess.open("user://ai_brain.json", FileAccess.WRITE)

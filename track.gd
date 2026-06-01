@@ -1,5 +1,5 @@
 extends Path2D
-
+const EXPLOSION_SCENE = preload("res://explosion.tscn")
 const BALL_SCENE = preload("res://ball.tscn")
 const COLORS = ["red", "blue", "yellow", "gray", "green"]
 @export var flip_balls: bool = true
@@ -9,7 +9,7 @@ var balls_to_destroy: Array[PathFollow2D] = []
 var was_gap_active: bool = false
 var collision_recoil: float = 0.0
 var ball_diameter: float = 65.0 
-var track_speed: float = 150.0
+var track_speed: float = 75.0
 var combo_count: int = 0
 var balls: Array[PathFollow2D] = []
 var last_gap_index: int = -1
@@ -174,9 +174,6 @@ func check_matches(inserted_index: int) -> bool:
 		for index in matching_indices:
 			var ball = balls[index]
 			balls_to_destroy.append(ball)
-			
-			ball.modulate.a = 0.4
-			
 			ball.get_node("StaticBody2D/CollisionShape2D").disabled = true
 			
 		
@@ -189,10 +186,15 @@ func check_matches(inserted_index: int) -> bool:
 func execute_match_deletion() -> void:
 	for ball in balls_to_destroy:
 		if ball in balls:
+			var explosion = EXPLOSION_SCENE.instantiate()
+			explosion.global_position = ball.global_position
+			get_parent().add_child(explosion)
+			
 			var index = balls.find(ball)
 			balls.remove_at(index) 
 			ball.queue_free() 
 	balls_to_destroy.clear() 
+
 
 func find_first_gap() -> int:
 	for i in range(1, balls.size()):

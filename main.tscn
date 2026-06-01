@@ -36,7 +36,7 @@ position = Vector2(1, -2)
 zoom = Vector2(0.6, 0.613)
 
 [node name="Player" parent="." unique_id=48903084 instance=ExtResource("3_lquwl")]
-position = Vector2(-4.0000005, 302)
+position = Vector2(-337, 158)
 rotation = -1.5707964
 scale = Vector2(0.65, 0.65)
 
@@ -44,7 +44,7 @@ scale = Vector2(0.65, 0.65)
 texture = ExtResource("4_1bvp3")
 
 [node name="AIOpponent" parent="." unique_id=2000684706 node_paths=PackedStringArray("ai_track", "player_track") instance=ExtResource("6_7mycd")]
-position = Vector2(-14.000002, -301)
+position = Vector2(-338, -148)
 rotation = 1.5707964
 scale = Vector2(0.6, 0.6)
 ai_track = NodePath("../Track")
