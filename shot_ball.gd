@@ -4,7 +4,7 @@ var speed: float = 2000.0
 var animation_timer: float = 0.0
 var frame_rate: float = 0.05 
 var ball_color: String = "red"
-var shooter: String = "player" # Can be "player" or "ai"
+var shooter: String = "player" 
 
 
 func _physics_process(delta: float) -> void:

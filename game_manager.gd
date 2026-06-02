@@ -6,7 +6,7 @@ class_name GameManager
 var player_hp_label: Label = null
 var ai_hp_label: Label = null
 
-@export var afk_training_mode: bool = true 
+@export var afk_training_mode: bool = false 
 var auto_restart_timer: float = 0.0
 
 var player_hp: float = 50.0

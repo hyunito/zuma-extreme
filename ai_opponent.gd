@@ -17,7 +17,8 @@ const BALL_TEXTURES = {
 }
 
 var current_color: String = "red"
-
+var best_target = null
+var max_progress = -1.0
 var learning_rate: float = 0.2
 var discount_factor: float = 0.9
 var exploration_rate: float = 0.15
@@ -132,7 +133,13 @@ func find_target_ball(action: int) -> PathFollow2D:
 					same_color_candidates.append(ball)
 			
 			if not same_color_candidates.is_empty():
-				return same_color_candidates.pick_random()
+				best_target = null
+				max_progress = -1.0
+				for ball in same_color_candidates:
+					if ball.progress_ratio > max_progress:
+						max_progress = ball.progress_ratio
+						best_target = ball
+						return best_target
 				
 		action = Actions.CLEAR
 
@@ -146,7 +153,13 @@ func find_target_ball(action: int) -> PathFollow2D:
 					same_color_candidates.append(ball)
 					
 			if not same_color_candidates.is_empty():
-				return same_color_candidates.pick_random()
+				best_target = null
+				max_progress = -1.0
+				for ball in same_color_candidates:
+					if ball.progress_ratio > max_progress:
+						max_progress = ball.progress_ratio
+						best_target = ball
+						return best_target
 			
 		action = Actions.ATTACK
 
@@ -160,7 +173,13 @@ func find_target_ball(action: int) -> PathFollow2D:
 				same_color_candidates.append(ball)
 				
 		if not same_color_candidates.is_empty():
-			return same_color_candidates.pick_random()
+			best_target = null
+			max_progress = -1.0
+			for ball in same_color_candidates:
+				if ball.progress_ratio > max_progress:
+					max_progress = ball.progress_ratio
+					best_target = ball
+					return best_target
 			
 		return null
 
@@ -172,7 +191,13 @@ func find_target_ball(action: int) -> PathFollow2D:
 				same_color_candidates.append(ball)
 				
 		if not same_color_candidates.is_empty():
-			return same_color_candidates.pick_random()
+			best_target = null
+			max_progress = -1.0
+			for ball in same_color_candidates:
+				if ball.progress_ratio > max_progress:
+					max_progress = ball.progress_ratio
+					best_target = ball
+					return best_target
 			
 		var any_sight_candidates = []
 		for ball in player_track.balls:
