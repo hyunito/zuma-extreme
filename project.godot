@@ -17,6 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+BgmMainMenu="*uid://cot6kufla0nga"
+GameSettings="*uid://kc4x01kkh4nx"
 _mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
 
 [display]

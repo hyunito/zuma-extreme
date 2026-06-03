@@ -8,6 +8,9 @@ var shooter: String = "player"
 
 
 func _physics_process(delta: float) -> void:
+	if get_tree().paused:
+		return
+
 	var motion = transform.x * speed * delta
 	var collision = move_and_collide(motion)
 	

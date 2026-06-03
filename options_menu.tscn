@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://cbd01hf63sgxj"]
+
+[ext_resource type="Script" uid="uid://c7c0rrxct42fi" path="res://options_menu.gd" id="1_t1lix"]
+[ext_resource type="Texture2D" uid="uid://bq43cmjijps0o" path="res://assets/background/options_menu.jpg" id="2_4gmlt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
+texture = ExtResource("2_4gmlt")
+
+[sub_resource type="DPITexture" id="DPITexture_ogda5"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bffs"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.17254902, 0.039215688, 0.44313726, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwtu1"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.17254902, 0.039215688, 0.44313726, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1lix"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gmlt"]
+bg_color = Color(0.26147652, 0.26147655, 0.2614764, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogda5"]
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="OptionsMenu" type="Control" unique_id=261194481]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1lix")
+
+[node name="Panel" type="Panel" parent="." unique_id=535802020]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7vrkn")
+
+[node name="Label" type="Label" parent="." unique_id=866577257]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = 94.0
+offset_right = 126.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "🎵 Background Music"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=688079056]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = 168.0
+offset_right = 106.5
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "🔊 Sound Effects"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="." unique_id=675589503]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 132.0
+offset_right = 125.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = SubResource("DPITexture_ogda5")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_6bffs")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_vwtu1")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HSlider2" type="HSlider" parent="." unique_id=69009631]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 206.0
+offset_right = 125.0
+offset_bottom = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = SubResource("DPITexture_ogda5")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_6bffs")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_vwtu1")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Button" type="Button" parent="." unique_id=1288843395]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 534.0
+offset_right = 380.0
+offset_bottom = 584.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_t1lix")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4gmlt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ogda5")
+text = "🏠"
+
+[node name="Button2" type="Button" parent="." unique_id=862179387]
+layout_mode = 0
+offset_left = 772.0
+offset_top = 534.0
+offset_right = 822.0
+offset_bottom = 584.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_t1lix")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4gmlt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ogda5")
+text = "▶"
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_bgm_value_changed"]
+[connection signal="value_changed" from="HSlider2" to="." method="_on_sfx_value_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_play_pressed"]

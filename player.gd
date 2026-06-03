@@ -22,9 +22,14 @@ func _ready() -> void:
 	reload()
 
 func _process(_delta):
+	if get_tree().paused:
+		return
+
 	look_at(get_global_mouse_position())
 
 func _unhandled_input(event):
+	if get_tree().paused:
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		shoot()
 
