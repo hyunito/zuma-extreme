@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2mgoxv074rti"]
 
 [ext_resource type="Texture2D" uid="uid://nm88p1ghxb5n" path="res://assets/animation/ball_explosion.png" id="1_vxas0"]
-[ext_resource type="Script" uid="uid://cpby1sbb2xia0" path="res://explosion.gd" id="2_j4sxf"]
+[ext_resource type="Script" uid="uid://cpby1sbb2xia0" path="res://entities/explosion/explosion.gd" id="2_j4sxf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxas0"]
 atlas = ExtResource("1_vxas0")

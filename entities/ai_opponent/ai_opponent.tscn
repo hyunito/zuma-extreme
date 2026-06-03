@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dvqopcx7pdn44"]
+[gd_scene format=3 uid="uid://djq8w7yrsqhj4"]
 
-[ext_resource type="Script" path="res://ai_opponent.gd" id="1_f4wte"]
+[ext_resource type="Script" uid="uid://ctlj1hoqaalso" path="res://entities/ai_opponent/ai_opponent.gd" id="1_f4wte"]
 [ext_resource type="Texture2D" uid="uid://d20fylk76gqpv" path="res://assets/avatar/AI_avatar.png" id="2_gw7vv"]
 [ext_resource type="Texture2D" uid="uid://dtoiqjclyy6dl" path="res://assets/balls/Red_ball.png" id="3_jnp63"]
 

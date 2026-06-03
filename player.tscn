@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cmgwae5f4m38w"]
+[gd_scene format=3 uid="uid://crlb10sllnku6"]
 
 [ext_resource type="Texture2D" uid="uid://cpgodg645ihos" path="res://assets/avatar/Player_avatar.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://crke8ui16ctrk" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dtoiqjclyy6dl" path="res://assets/balls/Red_ball.png" id="3_i3pqv"]
 
 [node name="Player" type="Node2D" unique_id=48903084]

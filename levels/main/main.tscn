@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://4nfwanimq48n"]
 
-[ext_resource type="Script" uid="uid://duhwtlgdl8bs0" path="res://game_manager.gd" id="1_5vw27"]
+[ext_resource type="Script" uid="uid://duhwtlgdl8bs0" path="res://levels/main/game_manager.gd" id="1_5vw27"]
 [ext_resource type="Texture2D" uid="uid://bgklvj77mbkfb" path="res://assets/background/Stage 1_Piko.png" id="1_h2yge"]
-[ext_resource type="Script" uid="uid://bb3kostg6vlx0" path="res://track.gd" id="2_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://d383j0otedd7j" path="res://track.tscn" id="2_lquwl"]
-[ext_resource type="PackedScene" uid="uid://cmgwae5f4m38w" path="res://player.tscn" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://bb3kostg6vlx0" path="res://levels/track/track.gd" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://d383j0otedd7j" path="res://levels/track/track.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cmgwae5f4m38w" path="res://entities/player/player.tscn" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://2rm0dtrghjim" path="res://assets/background/piko 2-export.png" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://djq8w7yrsqhj4" path="res://ai_opponent.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://qufli3xx25m6" path="res://hud.tscn" id="8_kek77"]
+[ext_resource type="PackedScene" uid="uid://djq8w7yrsqhj4" path="res://entities/ai_opponent/ai_opponent.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://qufli3xx25m6" path="res://ui/hud/hud.tscn" id="8_kek77"]
 [ext_resource type="AudioStream" uid="uid://dgedyb7fd5iuu" path="res://assets/sfx/shoot.mp3" id="9_kek77"]
 [ext_resource type="AudioStream" uid="uid://iuo1k2bhv332" path="res://assets/sfx/clear.mp3" id="10_4c57u"]
 [ext_resource type="AudioStream" uid="uid://dghmdxh7qiqfi" path="res://assets/sfx/health_restore.mp3" id="11_dg77c"]
@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bndrf6jt4yc46" path="res://assets/sfx/sfx_win.mp3" id="14_vivmo"]
 [ext_resource type="AudioStream" uid="uid://c2adkdmpd1nan" path="res://assets/sfx/sfx_lose.mp3" id="15_2cqfq"]
 [ext_resource type="AudioStream" uid="uid://6ok8am3bulor" path="res://assets/sfx/sfx_draw.mp3" id="16_2cqfq"]
-[ext_resource type="PackedScene" uid="uid://bxle02a1ovliw" path="res://pause_menu.tscn" id="17_yaehf"]
+[ext_resource type="PackedScene" uid="uid://bxle02a1ovliw" path="res://ui/pause_menu/pause_menu.tscn" id="17_yaehf"]
 
 [sub_resource type="Curve2D" id="Curve2D_h2yge"]
 _data = {

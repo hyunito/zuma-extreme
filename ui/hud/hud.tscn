@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ruxmwl48llg5"]
+[gd_scene format=3 uid="uid://qufli3xx25m6"]
 
 [ext_resource type="Texture2D" uid="uid://dmtpkntpj5mmd" path="res://assets/health_bar/health_under.png" id="1_8sq4i"]
 [ext_resource type="Texture2D" uid="uid://htovqpps1fvy" path="res://assets/health_bar/health_over.png" id="2_640wx"]

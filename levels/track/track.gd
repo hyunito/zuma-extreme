@@ -1,6 +1,6 @@
 extends Path2D
-const EXPLOSION_SCENE = preload("res://explosion.tscn")
-const BALL_SCENE = preload("res://ball.tscn")
+const EXPLOSION_SCENE = preload("res://entities/explosion/explosion.tscn")
+const BALL_SCENE = preload("res://entities/ball/ball.tscn")
 const COLORS = ["red", "blue", "yellow", "gray", "green"]
 @export var flip_balls: bool = true
 @onready var sfx_clear: AudioStreamPlayer = $"../sfx_clear"

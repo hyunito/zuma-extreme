@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://dbrl83cic7jeo"]
+[gd_scene format=3 uid="uid://dbq0pqwrdfibm"]
 
 [ext_resource type="Texture2D" uid="uid://bbq6qyjyfp62l" path="res://assets/background/main_menu.jpg" id="1_06t4h"]
-[ext_resource type="Script" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="Script" uid="uid://drq7gyeosjl0o" path="res://ui/main_menu/main_menu.gd" id="1_7vrkn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
 texture = ExtResource("1_06t4h")

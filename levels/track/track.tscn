@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://c61y4dyy1ymcs"]
+[gd_scene format=3 uid="uid://d383j0otedd7j"]
 
-[ext_resource type="Script" path="res://track.gd" id="1_mll3j"]
+[ext_resource type="Script" uid="uid://bb3kostg6vlx0" path="res://levels/track/track.gd" id="1_mll3j"]
 
 [sub_resource type="Curve2D" id="Curve2D_kdubu"]
 _data = {

@@ -1,6 +1,6 @@
 extends Node2D
 
-var bullet_scene = preload("res://shot_ball.tscn")
+var bullet_scene = preload("res://entities/shot_ball/shot_ball.tscn")
 @onready var mouth_position = $Marker2D
 @onready var loaded_ball_sprite = $LoadedBall
 @onready var sfx_shoot: AudioStreamPlayer = $"../sfx_shoot"

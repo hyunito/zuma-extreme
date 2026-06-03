@@ -32,4 +32,4 @@ func _on_resume_pressed() -> void:
 func _on_menu_pressed() -> void:
 	hide_pause_menu()
 	BgmMainMenu.play_music()
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")

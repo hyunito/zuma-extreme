@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqvyil3c6yhdr"]
 
-[ext_resource type="Script" uid="uid://ck6rvpr8ejinq" path="res://tutorial_menu.gd" id="1_w2y4n"]
+[ext_resource type="Script" uid="uid://ck6rvpr8ejinq" path="res://ui/tutorial_menu/tutorial_menu.gd" id="1_w2y4n"]
 [ext_resource type="Texture2D" uid="uid://b7kxbta6307fr" path="res://assets/background/tutorial_menu.jpg" id="2_w2y4n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7vrkn"]
